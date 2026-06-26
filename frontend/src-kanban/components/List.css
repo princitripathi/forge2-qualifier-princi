@@ -1,0 +1,92 @@
+/* ── List ── */
+.list {
+  min-width: 280px;
+  max-width: 280px;
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 120px);
+}
+
+.list-header {
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+}
+
+.list-header h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.card-count {
+  background: var(--border);
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 1px 7px;
+  border-radius: 999px;
+}
+
+.list-cards {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.list-cards::-webkit-scrollbar { width: 4px; }
+.list-cards::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+/* ── List Footer ── */
+.list-footer {
+  padding: 8px;
+  border-top: 1px solid var(--border);
+}
+
+.add-card-btn {
+  width: 100%;
+  padding: 8px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.85rem;
+  text-align: left;
+  border-radius: 4px;
+  transition: all 0.15s;
+}
+
+.add-card-btn:hover {
+  background: var(--surface-hover);
+  color: var(--text);
+}
+
+.add-card-form {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.add-card-form input {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 0.85rem;
+}
+
+.add-card-actions {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}

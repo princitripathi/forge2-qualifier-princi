@@ -1,0 +1,414 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  color: #eee;
+  min-height: 100vh;
+}
+
+.app {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 280px;
+  background: rgba(22, 33, 62, 0.95);
+  padding: 24px 20px;
+  border-right: 1px solid #0f3460;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.sidebar h2 {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.offline-badge {
+  background: #e74c3c;
+  color: #fff;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  animation: pulse-badge 2s ease-in-out infinite;
+}
+
+@keyframes pulse-badge {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.reset-btn {
+  background: none;
+  border: 1px solid #0f3460;
+  color: #888;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.reset-btn:hover {
+  border-color: #3498db;
+  color: #3498db;
+}
+
+.board-list {
+  list-style: none;
+  margin-top: 12px;
+}
+
+.board-list li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
+  gap: 4px;
+}
+
+.board-list li button:first-child {
+  flex: 1;
+  text-align: left;
+  padding: 10px 12px;
+  background: transparent;
+  border: none;
+  color: #aaa;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: all 0.15s;
+}
+
+.board-list li.active button:first-child {
+  background: #0f3460;
+  color: #fff;
+  font-weight: 600;
+}
+
+.board-list li button:first-child:hover {
+  background: #0f3460;
+  color: #fff;
+}
+
+/* Main board area */
+.board-main {
+  flex: 1;
+  padding: 28px 32px;
+  overflow-x: auto;
+}
+
+.board-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.board-header h1 {
+  font-size: 26px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.card-count {
+  background: #0f3460;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  color: #888;
+}
+
+.lists-container {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+/* List */
+.list {
+  background: #16213e;
+  border-radius: 12px;
+  padding: 14px;
+  min-width: 300px;
+  max-width: 300px;
+  border: 1px solid #0f3460;
+  transition: border-color 0.2s;
+}
+
+.list.drag-over {
+  border-color: #3498db;
+  border-style: dashed;
+}
+
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.list-header h3 {
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.list-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.badge {
+  background: #0f3460;
+  color: #888;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 11px;
+}
+
+.list-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 12px;
+}
+
+/* Card */
+.card {
+  background: #1a1a2e;
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: grab;
+  border: 1px solid #0f3460;
+  transition: all 0.15s;
+}
+
+.card:hover {
+  border-color: #3498db;
+  transform: translateY(-1px);
+}
+
+.card:active {
+  cursor: grabbing;
+}
+
+.card span {
+  flex: 1;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  color: #555;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 0 4px;
+  line-height: 1;
+  transition: color 0.15s;
+}
+
+.delete-btn:hover {
+  color: #e74c3c;
+}
+
+/* Add card form */
+.add-card-btn {
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px;
+  background: transparent;
+  border: 1px dashed #0f3460;
+  color: #666;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.15s;
+}
+
+.add-card-btn:hover {
+  border-color: #3498db;
+  color: #3498db;
+  background: rgba(52, 152, 219, 0.05);
+}
+
+.card-form {
+  margin-top: 10px;
+}
+
+.card-form input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #3498db;
+  background: #1a1a2e;
+  color: #eee;
+  font-size: 14px;
+  outline: none;
+}
+
+.card-form-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.btn-primary {
+  padding: 8px 16px;
+  background: #3498db;
+  border: none;
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.btn-primary:hover {
+  background: #2980b9;
+}
+
+.btn-secondary {
+  padding: 8px 16px;
+  background: transparent;
+  border: 1px solid #0f3460;
+  color: #888;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.btn-secondary:hover {
+  border-color: #555;
+  color: #aaa;
+}
+
+/* New list form */
+.new-list-form {
+  background: rgba(22, 33, 62, 0.6);
+  border-radius: 12px;
+  padding: 16px;
+  min-width: 300px;
+  border: 1px dashed #0f3460;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.new-list-form input {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #0f3460;
+  background: #1a1a2e;
+  color: #eee;
+  font-size: 14px;
+  outline: none;
+}
+
+.new-list-form input:focus {
+  border-color: #3498db;
+}
+
+.new-list-form button {
+  padding: 10px;
+  background: #3498db;
+  border: none;
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.new-list-form button:hover {
+  background: #2980b9;
+}
+
+/* Add board form */
+.add-form {
+  display: flex;
+  gap: 6px;
+}
+
+.add-form input {
+  flex: 1;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #0f3460;
+  background: #1a1a2e;
+  color: #eee;
+  font-size: 13px;
+  outline: none;
+}
+
+.add-form input:focus {
+  border-color: #3498db;
+}
+
+.add-form button {
+  padding: 8px 14px;
+  background: #3498db;
+  border: none;
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.add-form button:hover {
+  background: #2980b9;
+}
+
+/* Empty state */
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+  color: #666;
+}
+
+.empty h2 {
+  font-size: 24px;
+  margin-bottom: 8px;
+  color: #888;
+}
+
+.empty p {
+  font-size: 16px;
+}
+
+/* Loading */
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-size: 18px;
+  color: #666;
+}
