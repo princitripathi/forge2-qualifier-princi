@@ -1,0 +1,32 @@
+{
+  "boards": [
+    {
+      "id": 1,
+      "title": "MVP Sprint",
+      "lists": [
+        {
+          "id": 101,
+          "title": "To Do",
+          "cards": [
+            { "id": 1001, "title": "Set up project repo" },
+            { "id": 1002, "title": "Design landing page mockup" }
+          ]
+        },
+        {
+          "id": 102,
+          "title": "In Progress",
+          "cards": [
+            { "id": 1003, "title": "Build Kanban board UI" }
+          ]
+        },
+        {
+          "id": 103,
+          "title": "Done",
+          "cards": [
+            { "id": 1004, "title": "Project scaffold" }
+          ]
+        }
+      ]
+    }
+  ]
+}
