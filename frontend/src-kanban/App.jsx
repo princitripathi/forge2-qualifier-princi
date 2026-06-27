@@ -13,17 +13,12 @@ function App() {
       const fromList = newList.find(l => l.id === fromListId)
       const toList = newList.find(l => l.id === toListId)
       if (!fromList || !toList) return prev
-
       const cardIdx = fromList.cards.findIndex(c => c.id === cardId)
       if (cardIdx === -1) return prev
       const [card] = fromList.cards.splice(cardIdx, 1)
-
       const insertIdx = toIndex ?? toList.cards.length
       toList.cards.splice(insertIdx, 0, card)
-
-      // Persist to mock API (fire and forget)
       mockApi.moveCard(cardId, fromListId, toListId, toIndex)
-
       return { ...prev, lists: newList }
     })
   }, [])
@@ -65,6 +60,18 @@ function App() {
     }))
   }, [])
 
+  const handleUpdateCard = useCallback((cardId, listId, data) => {
+    mockApi.updateCard(cardId, data)
+    setBoard(prev => ({
+      ...prev,
+      lists: prev.lists.map(l =>
+        l.id === listId
+          ? { ...l, cards: l.cards.map(c => (c.id === cardId ? { ...c, ...data } : c)) }
+          : l
+      ),
+    }))
+  }, [])
+
   return (
     <div className="app">
       <header className="app-header">
@@ -78,6 +85,7 @@ function App() {
         onDeleteCard={handleDeleteCard}
         onAddList={handleAddList}
         onRenameCard={handleRenameCard}
+        onUpdateCard={handleUpdateCard}
         dragState={dragState}
         setDragState={setDragState}
       />

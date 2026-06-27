@@ -119,3 +119,91 @@
 .card-menu button:hover {
   background: var(--surface-hover);
 }
+
+.card-extra {
+  display: flex;
+  gap: 8px;
+  margin: 4px 0;
+  flex-wrap: wrap;
+}
+
+.card-member {
+  font-size: 11px;
+  color: #a78bfa;
+  background: #1e1b4b;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.card-due {
+  font-size: 11px;
+  color: #34d399;
+  background: #064e3b;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.card-modal-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.card-modal {
+  background: #1e293b;
+  border-radius: 12px;
+  padding: 24px;
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card-modal h3 {
+  color: #f1f5f9;
+  margin: 0;
+}
+
+.card-modal label {
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+.card-modal input[type="date"],
+.card-modal select {
+  background: #0f172a;
+  border: 1px solid #334155;
+  color: #f1f5f9;
+  padding: 8px;
+  border-radius: 6px;
+  width: 100%;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.btn-save {
+  background: #6d28d9;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-cancel {
+  background: #334155;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}

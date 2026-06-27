@@ -2,7 +2,7 @@ import { useState } from 'react'
 import List from './List.jsx'
 import './Board.css'
 
-export default function Board({ board, onMoveCard, onAddCard, onDeleteCard, onAddList, onRenameCard, dragState, setDragState }) {
+export default function Board({ board, onMoveCard, onAddCard, onDeleteCard, onAddList, onRenameCard, onUpdateCard, dragState, setDragState }) {
   const [newListTitle, setNewListTitle] = useState('')
   const [showAddList, setShowAddList] = useState(false)
 
@@ -25,11 +25,11 @@ export default function Board({ board, onMoveCard, onAddCard, onDeleteCard, onAd
             onAddCard={onAddCard}
             onDeleteCard={onDeleteCard}
             onRenameCard={onRenameCard}
+            onUpdateCard={onUpdateCard}
             dragState={dragState}
             setDragState={setDragState}
           />
         ))}
-
         <div className="add-list-wrapper">
           {showAddList ? (
             <div className="add-list-form">

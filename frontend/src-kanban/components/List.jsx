@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Card from './Card.jsx'
 import './List.css'
 
-export default function List({ list, onMoveCard, onAddCard, onDeleteCard, onRenameCard, dragState, setDragState }) {
+export default function List({ list, onMoveCard, onAddCard, onDeleteCard, onRenameCard, onUpdateCard, dragState, setDragState }) {
   const [newCardTitle, setNewCardTitle] = useState('')
   const [showAddCard, setShowAddCard] = useState(false)
 
@@ -30,16 +30,11 @@ export default function List({ list, onMoveCard, onAddCard, onDeleteCard, onRena
   }
 
   return (
-    <div
-      className="list"
-      onDragOver={handleDragOver}
-      onDrop={handleDrop}
-    >
+    <div className="list" onDragOver={handleDragOver} onDrop={handleDrop}>
       <div className="list-header">
         <h3>{list.title}</h3>
         <span className="card-count">{list.cards.length}</span>
       </div>
-
       <div className="list-cards">
         {list.cards.map((card, index) => (
           <Card
@@ -50,12 +45,12 @@ export default function List({ list, onMoveCard, onAddCard, onDeleteCard, onRena
             onMoveCard={onMoveCard}
             onDeleteCard={onDeleteCard}
             onRenameCard={onRenameCard}
+            onUpdateCard={onUpdateCard}
             dragState={dragState}
             setDragState={setDragState}
           />
         ))}
       </div>
-
       <div className="list-footer">
         {showAddCard ? (
           <div className="add-card-form">
